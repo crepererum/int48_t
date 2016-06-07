@@ -8,7 +8,7 @@ class int48_t final {
         // default constructors
         int48_t() : _s0(0), _s1(0), _s2(0) {}
         int48_t(const int48_t& obj) = default;
-        int48_t(int48_t&& obj) = default;
+        int48_t(int48_t&& obj) noexcept = default;
 
         // converter constructors
         int48_t(const std::int64_t i) {
@@ -17,7 +17,7 @@ class int48_t final {
 
         // default assigments
         int48_t& operator=(const int48_t& obj) = default;
-        int48_t& operator=(int48_t&& obj) = default;
+        int48_t& operator=(int48_t&& obj) noexcept = default;
 
         // converter assigments
         int48_t& operator=(std::int64_t i) {
