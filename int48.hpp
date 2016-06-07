@@ -15,6 +15,10 @@ class int48_t final {
             int64_to_int48(i, *this);
         }
 
+        int48_t(const std::uint64_t i) {
+            int64_to_int48(static_cast<std::int64_t>(i), *this);
+        }
+
         // default assigments
         int48_t& operator=(const int48_t& obj) = default;
         int48_t& operator=(int48_t&& obj) noexcept = default;
@@ -25,9 +29,18 @@ class int48_t final {
             return *this;
         }
 
+        int48_t& operator=(std::uint64_t i) {
+            int64_to_int48(static_cast<std::int64_t>(i), *this);
+            return *this;
+        }
+
         // cast operators
         operator std::int64_t() const {
             return int48_to_int64(*this);
+        }
+
+        operator std::uint64_t() const {
+            return static_cast<std::uint64_t>(int48_to_int64(*this));
         }
 
         // comparison
