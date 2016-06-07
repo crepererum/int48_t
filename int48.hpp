@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <ostream>
 
 class int48_t final {
@@ -120,4 +121,16 @@ static_assert(sizeof(int48_t) == 6, "size of int48_t is not 48bit, check your co
 std::ostream& operator<<(std::ostream& stream, const int48_t& obj) {
     stream << "int48_t(s0=" << obj._s0 << ", s1=" << obj._s1 << ", s2=" << obj._s2 << ")";
     return stream;
+}
+
+namespace std {
+    template<>
+    struct hash<int48_t> {
+        size_t operator()(const int48_t& obj) const {
+            // XXX: implement fast path
+            return _helper(static_cast<std::int64_t>(obj));
+        }
+
+        std::hash<std::int64_t> _helper;
+    };
 }
