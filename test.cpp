@@ -1,4 +1,4 @@
-#include "int48.hpp"
+#include "int48_t.hpp"
 
 #include <iostream>
 
