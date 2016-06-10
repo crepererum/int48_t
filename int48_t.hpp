@@ -62,7 +62,10 @@ class int48_t final {
         std::int64_t _s : 48;
 } __attribute__((packed));
 
-static_assert(sizeof(int48_t) == 6, "size of int48_t is not 48bit, check your compiler!");
+static_assert(sizeof(int48_t)    == 6,  "size of int48_t is not 48bit, check your compiler!");
+static_assert(sizeof(int48_t[2]) == 12, "size of int48_t[2] is not 2*48bit, check your compiler!");
+static_assert(sizeof(int48_t[3]) == 18, "size of int48_t[3] is not 3*48bit, check your compiler!");
+static_assert(sizeof(int48_t[4]) == 24, "size of int48_t[4] is not 4*48bit, check your compiler!");
 
 std::ostream& operator<<(std::ostream& stream, const int48_t& obj) {
     stream << obj._s;
